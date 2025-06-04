@@ -5,7 +5,7 @@
 
 1. On a clean installation of Raspbian 11 Bullseye, install Git and download the repo:
 ```
-git clone https://github.com/joleiv/blubo.git
+git clone https://github.com/ignaciostuardo/Blubo.git
 ```
 2. After the installation is complete, you must set the file as an executable. Open terminal and run the following code:
 ````
