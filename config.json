@@ -1,0 +1,16 @@
+{
+  "time_to_close_start": "08:00:00",
+  "time_to_close_end": "12:00:00",
+  "servo_pin": 13,
+  "data_supplier": "MiProveedor",
+  "location_name": "MiUbicacion",
+  "position": "MiPosicion",
+  "angle_open": 128,
+  "angle_closed": 73,
+  "error_patterns": {
+    "device_on": [[30, 0.2], [0, 0.2], [30, 0.2]],
+    "error_1": [[90, 0.5], [0, 0.5]],
+    "error_2": [[120, 0.5], [60, 0.5], [120, 0.5]],
+    "error_3": [[180, 0.3], [0, 0.3], [180, 0.3], [0, 0.3]]
+  }
+}
