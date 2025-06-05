@@ -139,7 +139,7 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/python3 $MAIN_PY_PATH
-WorkingDirectory=/home/$USER_DIR/blubo/V3
+WorkingDirectory=/home/$USER_DIR/blubo
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
@@ -156,7 +156,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable mainpy.service
 
 # Iniciar el servicio
-echo "Iniciando el servicio main.py..."
+echo "Iniciando el servicio ..."
 sudo systemctl start mainpy.service
 
 # Verificar el estado del servicio
