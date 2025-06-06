@@ -8,6 +8,10 @@ sudo apt-get update
 echo "Actualizando los paquetes..."
 sudo apt-get upgrade -y
 
+# Actualizar pip antes de instalar cualquier paquete Python
+echo "Actualizando pip..."
+sudo pip3 install --upgrade pip
+
 # Instalación de Git
 echo "Instalando Git..."
 sudo apt-get install git -y
@@ -156,12 +160,29 @@ sudo systemctl daemon-reload
 sudo systemctl enable mainpy.service
 
 # Iniciar el servicio
-echo "Iniciando el servicio ..."
+echo "Iniciando el servicio main.py..."
 sudo systemctl start mainpy.service
 
 # Verificar el estado del servicio
 echo "Verificando el estado del servicio..."
-sudo systemctl status mainpy.service
+sudo systemctl status mainpy.service --no-pager | head -n 15
+sleep 3
+
+# --- Configuración inicial del RTC ---
+echo "Configurando el RTC (ds1307)..."
+
+# Agregar overlay al final de /boot/config.txt si no existe
+if ! grep -q "dtoverlay=i2c-rtc,ds1307" /boot/config.txt; then
+    echo "dtoverlay=i2c-rtc,ds1307" | sudo tee -a /boot/config.txt
+    echo "Línea agregada a /boot/config.txt"
+else
+    echo "La línea para RTC ya está presente en /boot/config.txt"
+fi
+
+# Eliminar fake-hwclock
+echo "Eliminando fake-hwclock..."
+sudo apt remove fake-hwclock -y
+sudo systemctl disable fake-hwclock
 
 # Mensaje final
-echo "####Reinicia la Raspberry####"
+echo "#### Configuración finalizada. Reinicia la Raspberry Pi para aplicar todos los cambios. ####"
